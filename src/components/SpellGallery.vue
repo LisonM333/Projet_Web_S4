@@ -48,6 +48,30 @@ const selectSpell = async (spell) => {
   console.log("SELECTED:", selectedSpell)
 }
 
+//FAVORITE GESTION
+const favorites = ref([])
+const STORAGE_KEY = 'favoriteSpells'
+
+const loadFavorites = () => {
+  const data = localStorage.getItem(STORAGE_KEY)
+  favorites.value = data ? JSON.parse(data) : []
+}
+loadFavorites()
+const saveFavorites = () => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites.value))
+}
+const toggleFavorite = (selectedSpell) => {
+  const index = favorites.value.findIndex(f => f.index === selectedSpell.index)
+  if (index === -1) {
+    favorites.value.push(selectedSpell)
+  } else {
+    favorites.value.splice(index, 1)
+  }
+  saveFavorites()
+}
+const isFavorite = (selectedSpell) => {
+  return favorites.value.some(f => f.index === selectedSpell.index)
+}
 
 </script>
 
@@ -78,7 +102,14 @@ const selectSpell = async (spell) => {
 </div>
 
 <div id="detail">
-  <div id="spell-gallery">
+    <div>
+      <button v-if="selectedSpell"
+      id="favorite"
+      :class="{ active: isFavorite(selectedSpell) }"
+      @click="toggleFavorite(selectedSpell)">
+        ★
+      </button>
+    </div>
     <div class="cards">
       <SpellCard 
       v-if="selectedSpell"
@@ -86,15 +117,13 @@ const selectSpell = async (spell) => {
       :level="selectedSpell.level"
       :casting_time="selectedSpell.casting_time"
       :range="selectedSpell.range"
-      :component="selectedSpell.component"
+      :component="selectedSpell.components"
       :duration="selectedSpell.duration"
-      :school="selectedSpell.school.name"
+      :school="selectedSpell.school?.name"
       :attack="selectedSpell.attack_type"
-      :damage="selectedSpell.damage"
-      :description="selectedSpell.desc"
-      :available="selectedSpell.available"/>
+      :damage="selectedSpell.damage?.damage_type?.name"
+      :description="selectedSpell.desc"/>
     </div>
-  </div>
 </div>
 
 </div>
@@ -111,13 +140,12 @@ const selectSpell = async (spell) => {
     width : 60vw;
   }
 
-  #detail {
-    width: 40vw;
-    height: 100vh;
-    border-left: 1px solid #ccc;
-    padding: 10px;
-    position: sticky;
-    top: 0;
+  #gallery-options {
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    gap : 10px;
+    margin-bottom : 20px;
   }
 
   .cards {
@@ -126,5 +154,29 @@ const selectSpell = async (spell) => {
     gap : 10px;
     justify-content : center;
     align-items : center;
+  }
+
+  #favorite {
+    font-size :larger;
+    color: #8c8c8c;
+    background-color: #d0d0d0;
+    border :0;
+    border-radius: 20px;
+    padding : 0px 10px 5px 10px;
+  }
+
+  #favorite.active {
+    color: #4e0556;
+    background-color: #bba0c3;
+    border : 0;
+  }
+
+  #detail {
+    width: 40vw;
+    height: 100vh;
+    border-left: 1px solid #ccc;
+    padding: 10px;
+    position: sticky;
+    top: 0;
   }
 </style>

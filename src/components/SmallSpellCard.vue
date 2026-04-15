@@ -1,8 +1,8 @@
 <template>
   <div class="card">
-    <h2>{{ props.name }}</h2>
+    <div class="title"><h2>{{ props.name }}</h2></div>
     <div class="caract">
-      <h3>Level :</h3> <p>{{ props.level }}</p>
+      <h3>Lvl :</h3> <p>{{ props.level }}</p>
     </div>
   </div>
 </template>
@@ -17,20 +17,16 @@ const props = defineProps({
 </script>
 
 <style scoped>
-  @font-face {
-    font-family:Sniglet-Regular;
-    src: 
-      url('/src/assets/font/Sniglet/Sniglet-Regular.ttf');
-  }
-
   .card {
-    font-family: Sniglet-Regular;
-    display : colums;
-    height : 150px;
+    display : flex;
+    justify-content: space-between;
+    gap : 20px;
+    /* height : 75px; */
     width : 350PX;
-    background-color : rgb(131, 4, 4);
-    color : white;
+    background-color : #830404;
+    color : #e2bdbd;
     border-radius: 10px;
+    padding: 10px;
   }
 
   .caract {
@@ -41,32 +37,10 @@ const props = defineProps({
     align-items : center;
   }
 
-  .caract > * {
-    width : 160px;
-    font-size: 60%;
-    margin-bottom : -10px;
-  }
-
-  .caract p {
-    text-align: center;
-  }
-
-  .desc {
-    display : flex;                                                                                                                                                                                                                                                                                                                                                                               
-    flex-direction: column;
+  .title{
+    display : flex;
     justify-content : center;
     align-items : center;
   }
 
-  .desc > * {
-    width : 330px;
-    font-size: 50%;
-    margin-bottom : 10px;
-  }
-
-  .desc p {
-    text-align: justify;
-  }
-
-  
 </style>

@@ -8,11 +8,11 @@
       <div v-if="props.component !== undefined"><h4>Components :</h4><p>{{ props.component }}</p></div>
       <div v-if="props.duration !== undefined"><h4>Duration :</h4><p>{{ props.duration }}</p></div>
       <div v-if="props.school !== undefined"><h4>School :</h4><p>{{ props.school}}</p></div>
-      <div v-if="props.attack !== undefined"><h4>Attack :</h4><p></p></div>
-      <div v-if="props.damage !== undefined"><h4>Damage/Effect :</h4><p></p></div>
+      <div v-if="props.attack !== undefined"><h4>Attack :</h4><p>{{ props.attack}}</p></div>
+      <div v-if="props.damage !== undefined"><h4>Damage Type :</h4><p>{{ props.damage}}</p></div>
     </div>
     <div class ="desc">
-      <div v-if="props.desc !== undefined"><h4>Description :</h4> <p>{{ props.description[0] }} </p></div>
+      <div v-if="props.description !== undefined"><h4>Description :</h4> <p>{{ props.description[0]}} </p></div>
     </div>
   </div>
 </template>
@@ -29,7 +29,7 @@ const props = defineProps({
   school: {type: String, required: false},
   attack: {type: String, required: false},
   damage: {type: String, required: false},
-  description: {type: String, required: false},
+  description: {type: Array, required: false},
   
   })
 </script>

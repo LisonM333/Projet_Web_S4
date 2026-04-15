@@ -64,6 +64,7 @@ const filteredMonsterData = computed(() => {
 
   <div id="gallery-options">
     <input type="text" v-model="search" placeholder="Search monster" />
+
     <label for="monster-type">Type :</label>
     <select v-model="monsterType" id="monster-type">
       <option value="">all</option>
@@ -119,5 +120,13 @@ const filteredMonsterData = computed(() => {
     gap : 10px;
     justify-content : center;
     align-items : center;
+  }
+
+  #gallery-options {
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    gap : 10px;
+    margin-bottom : 20px;
   }
 </style>
