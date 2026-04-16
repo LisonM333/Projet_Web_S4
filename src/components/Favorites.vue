@@ -1,12 +1,16 @@
 <script setup>
   import { ref, onMounted, computed } from 'vue'
   import SpellCard from './SpellCard.vue'
+  import MonsterCard from './MonsterCard.vue'
 
-  const favorites = ref([])
+  const favoritesSpells = ref([])
+  const favoritesMonsters = ref([])
 
   const loadFavorites = () => {
-    const data = localStorage.getItem('favoriteSpells')
-    favorites.value = data ? JSON.parse(data) : []
+    const dataSpell = localStorage.getItem('favoriteSpells')
+    favoritesSpells.value = dataSpell ? JSON.parse(dataSpell) : []
+    const dataMonster = localStorage.getItem('favoriteMonsters')
+    favoritesMonsters.value = dataMonster ? JSON.parse(dataMonster) : []
   }
 
   onMounted(() => {
@@ -14,18 +18,24 @@
   })
 
   //FILTRE SPELLS
-  const search = ref('')
+  const search_spell = ref('')
+  const search_spell_lvl = ref('')
   const spellsSortBy = ref('name')
   const damageType = ref('')
   const schoolType = ref('')
 
-
-
   const filteredSpellsData = computed(() => {
-  let result = favorites.value.filter(
-  (spell) => spell.name.toLowerCase ().includes(search.value.toLowerCase ())
+  let result = favoritesSpells.value.filter(
+  (spell) => spell.name.toLowerCase ().includes(search_spell.value.toLowerCase ())
   )
+  
   //filtre
+  if (search_spell_lvl.value !== '') {
+    result = result.filter(
+      (spell) => spell.level === parseInt(search_spell_lvl.value)
+    )
+  }
+
   if (damageType.value) {
     result = result.filter((spell) => {
       if (damageType.value === 'none') {
@@ -56,14 +66,50 @@
     return result
   })
 
+    //FILTRE MONSTERS
+  const search_monster = ref('')
+  const monstersSortBy = ref('name')
+  const monsterType = ref('')
+
+
+  const filteredMonstersData = computed(() => {
+  let result = favoritesMonsters.value.filter(
+  (monster) => monster.name.toLowerCase ().includes(search_monster.value.toLowerCase ())
+  )
+  //filtre
+  if (monsterType.value) {
+    result = result.filter((monster) =>
+      monster.type === monsterType.value
+    )
+  }
+
+  //sort
+  result = result.toSorted((a, b) => {
+    if (monstersSortBy.value === 'name') {
+      return a.name.localeCompare (b.name)// sort in alphabetical order
+    } else {
+      const hpDiff = (a.hit_points || 0) - (b.hit_points || 0)
+      if (hpDiff !== 0) {
+        return hpDiff
+      }
+      return a.name.localeCompare(b.name)
+    }
+    })
+    return result
+  })
+
 
 </script>
 
 <template>
     <h2>Favorites</h2>
 
-  <div id="filter-options">
-    <input type="text" v-model="search" placeholder="Search spell" />
+  <div id = page>
+  <div id = "spells">
+
+  <div class="filter-options">
+    <input type="text" v-model="search_spell" placeholder="Search spell" />
+    <input type="number" v-model="search_spell_lvl" placeholder="Search level" min="0" max="9"/>
     <label for="spell-sort">Sort by : </label>
     <select v-model="spellsSortBy" id="spell-sort">
       <option value="name">Name</option>
@@ -106,7 +152,7 @@
       
 
 
-  <div v-if="favorites.length === 0">
+  <div v-if="favoritesSpells.length === 0">
     No favorite here ...
   </div>
 
@@ -124,9 +170,88 @@
       :damage="spell.damage?.damage_type?.name"
       :description="spell.desc"/>
   </div>
+  
+  </div>
+  <div id = "separation"></div>
+  <div id = "monsters">
+
+  <div class="filter-options">
+    <input type="text" v-model="search_monster" placeholder="Search monster" />
+    <label for="monster-sort">Sort by : </label>
+    <select v-model="monstersSortBy" id="monster-sort">
+      <option value="name">Name</option>
+      <option value="hp">Hit points</option>
+    </select>
+
+
+    <label for="monster-type">Type :</label>
+    <select v-model="monsterType" id="monster-type">
+      <option value="">all</option>
+      <option value="aberration">aberration</option>
+      <option value="beast">beast</option>
+      <option value="celestial">celestial</option>
+      <option value="construct">construct</option>
+      <option value="dragon">dragon</option>
+      <option value="elemental">elemental</option>
+      <option value="fey">fey</option>
+      <option value="fiend">fiend</option>
+      <option value="giant">giant</option>
+      <option value="humanoid">humanoid</option>
+      <option value="monstrosity">monstrosity</option>
+      <option value="ooze">ooze</option>
+      <option value="plant">plant</option>
+      <option value="undead">undead</option>
+
+
+    </select>
+  </div>
+      
+
+
+  <div v-if="favoritesMonsters.length === 0">
+    No favorite here ...
+  </div>
+
+  <div class="cards">
+    <MonsterCard 
+      v-for="monster in filteredMonstersData"
+      :name="monster.name"
+      :size="monster.size"
+      :type="monster.type"
+      :align="monster.alignment"
+      :AC="monster.armor_class"
+      :HP="monster.hit_points"
+      :STR="monster.strength"
+      :DEX="monster.dexterity"
+      :CON="monster.constitution"
+      :INT="monster.intelligence"
+      :WIS="monster.wisdom"
+      :CHA="monster.charisma"
+      :desc="monster.desc"/>
+  </div>
+  
+  </div>
+  </div>
 </template>
 
 <style>
+  #page {
+    display : flex; 
+    justify-content: space-around;
+  }
+
+  #spells{
+    width: 49%;
+  }
+  #separation{
+    width: 2px;
+    /* border-left: 2px solid #ccc; */
+    background-color: #ccc;
+  }
+  #monsters{
+    width: 49%;
+  }
+
   .cards {
     display: flex;
     flex-wrap: wrap;
