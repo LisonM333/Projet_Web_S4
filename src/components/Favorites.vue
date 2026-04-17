@@ -237,12 +237,12 @@ const changeView = () => {
     <label for="monster-size">Size :</label>
     <select v-model="monsterSize" id="monster-size">
       <option value="">all</option>
-      <option value="tiny">Tiny</option>
-      <option value="small">Small</option>
-      <option value="medium">Medium</option>
-      <option value="large">Large</option>
-      <option value="huge">Huge</option>
-      <option value="gargantuan">Gargantuan</option>
+      <option value="Tiny">Tiny</option>
+      <option value="Small">Small</option>
+      <option value="Medium">Medium</option>
+      <option value="Large">Large</option>
+      <option value="Huge">Huge</option>
+      <option value="Gargantuan">Gargantuan</option>
     </select>
   </div>
 
