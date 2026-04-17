@@ -29,6 +29,11 @@ const props = defineProps({
     padding: 10px;
   }
 
+  .card:hover{
+    color : #830404;
+    background-color : #e2bdbd;
+  }
+
   .caract {
     display : flex;
     flex-wrap : wrap;

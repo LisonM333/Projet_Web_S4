@@ -165,10 +165,20 @@ const isFavorite = (selectedSpell) => {
     padding : 0px 10px 5px 10px;
   }
 
+  #favorite:hover {
+    color: #4e0556;
+    transition: color 1s ease;
+  }
+
   #favorite.active {
     color: #4e0556;
     background-color: #bba0c3;
     border : 0;
+  }
+
+  #favorite.active:hover {
+    color: #d0d0d0;
+    transition: color 1s ease;
   }
 
   #detail {

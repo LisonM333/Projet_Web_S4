@@ -20,10 +20,15 @@ const props = defineProps({
     gap : 20px;
     /* height : 75px; */
     width : 250PX;
-    background-color : #065e13;;
-    color : #9bcea3;;
+    background-color : #065e13;
+    color : #9bcea3;
     border-radius: 10px;
     padding: 10px;
+  }
+
+  .card:hover{
+    color : #065e13;
+    background-color : #9bcea3;
   }
 
   .caract {

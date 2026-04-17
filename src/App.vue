@@ -61,6 +61,13 @@ body{
   border-top-right-radius: 15px;
 }
 
+#table div:hover {
+  border: 1px solid #bba0c3;
+  border-bottom: 0;
+  background-color: #bba0c3;
+  color: #4e0556;
+}
+
 #table div:last-child {
   z-index: 1;
   margin-left: -35px;
@@ -80,6 +87,8 @@ body{
 }
 
 #table div:has(a.router-link-exact-active) {
+  border : 1px solid #bba0c3;
+  border-bottom: 0;
   background-color: #4e0556;
   color: #bba0c3;
 }

@@ -145,6 +145,7 @@ const isFavorite = (selectedMonster) => {
       :INT="selectedMonster.intelligence"
       :WIS="selectedMonster.wisdom"
       :CHA="selectedMonster.charisma"
+      :img="selectedMonster.image"
       :desc="selectedMonster.desc"/>
     </div>
 </div>
@@ -178,10 +179,29 @@ const isFavorite = (selectedMonster) => {
     align-items : center;
   }
 
+  #favorite {
+    font-size :larger;
+    color: #8c8c8c;
+    background-color: #d0d0d0;
+    border :0;
+    border-radius: 20px;
+    padding : 0px 10px 5px 10px;
+  }
+
+  #favorite:hover {
+    color: #4e0556;
+    transition: color 1s ease;
+  }
+
   #favorite.active {
     color: #4e0556;
     background-color: #bba0c3;
     border : 0;
+  }
+
+  #favorite.active:hover {
+    color: #d0d0d0;
+    transition: color 1s ease;
   }
 
   #detail {
