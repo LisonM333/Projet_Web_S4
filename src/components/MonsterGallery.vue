@@ -203,4 +203,37 @@ const isFavorite = (selectedMonster) => {
     position: sticky;
     top: 0;
   }
+
+  /* //////////////////////////// */
+
+@media (max-width: 768px) {
+  body {
+    margin : 0;
+    /* overflow: hidden; */
+  }
+  #page {
+    /* height: ; */
+  }
+
+  #gallery {
+    position: fixed;
+    top: 200px;
+    left: 0;
+    width: 100%;
+    height: calc(50vh - 100px);
+    overflow-y: auto;
+  }
+
+  #detail {
+    position: fixed;
+    top: calc(50vh + 100px);
+    left: 0;
+    width: 95%;
+    height: calc(50vh - 100px);
+    overflow-y: auto;
+    border-top: 1px solid #ccc;
+    border-left: none;
+
+  }
+}
 </style>
