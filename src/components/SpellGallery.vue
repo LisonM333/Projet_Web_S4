@@ -97,6 +97,7 @@ const isFavorite = (selectedSpell) => {
     :key="spell.index"
     :name="spell.name"
     :level="spell.level"
+    :class="{ selected: selectedSpell?.index === spell.index }"
     @click="selectSpell(spell)"/>
   </div>
 </div>
@@ -154,6 +155,11 @@ const isFavorite = (selectedSpell) => {
     gap : 10px;
     justify-content : center;
     align-items : center;
+  }
+
+  .card.selected {
+    color : #830404;
+    background-color : #e2bdbd;
   }
 
   #favorite {

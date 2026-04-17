@@ -41,51 +41,62 @@ const props = defineProps({
       url('/src/assets/font/Sniglet/Sniglet-Regular.ttf');
   }
 
-  .card {
-    font-family: Sniglet-Regular;
-    display : colums;
-    height : 450px;
-    width : 350PX;
-    background-color : rgb(131, 4, 4);
-    color : white;
-    border-radius: 10px;
-    font-size: 50%;
+  h3 {
+    font-size: larger;
   }
 
-  /* .caract {
+  h4 {
+    font-size: large;
+  }
+  p{
+    font-size : medium;
+  }
+
+  .card {
+    font-family: Sniglet-Regular;
+
+    display : colums;
+    width : 90%;
+    height : auto;
+    color : #830404;
+    background-color : #e2bdbd;
+    border-radius: 10px;
+    padding : 10px;
+    position: relative;
+  }
+
+  
+  .caract {
     display : flex;
     flex-wrap : wrap;
-    gap : 10px;
-    justify-content : center;
+    gap : 15px;
+    justify-content : space-around;
     align-items : center;
   }
 
-  .caract > * {
-    width : 160px;
-    font-size: 60%;
-    margin-bottom : -10px;
-  } 
+  .caract div {
+    display : flex;
+    flex-wrap : wrap;
+    gap : 10px;
+    margin : 0px;
+    width: 45%;
+  }
 
-  .caract p {
-    text-align: center;
+  .caract div > * {
+    margin : 10px 0px;
   }
 
   .desc {
     display : flex;                                                                                                                                                                                                                                                                                                                                                                               
-    flex-direction: column;
-    justify-content : center;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content : start;
     align-items : center;
+    margin : 10px 0px;
   }
 
-  .desc > * {
-    width : 330px;
-    font-size: 50%;
-    margin-bottom : 10px;
-  }
-
-  .desc p {
+  .desc * {
     text-align: justify;
-  }*/
-
-  
+    margin : 0px;
+  }
 </style>
