@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, onMounted, computed } from 'vue'
+  import { ref, onMounted, onUnmounted, computed } from 'vue'
   import SpellCard from './SpellCard.vue'
   import MonsterCard from './MonsterCard.vue'
 
@@ -98,14 +98,38 @@
     return result
   })
 
+  //RESPONSIVE
+  onMounted(() => {
+    checkScreen()
+    window.addEventListener('resize', checkScreen)
+  })
+
+  onUnmounted(() => {
+    window.removeEventListener('resize', checkScreen)
+  })
+
+  const showSpell = ref(true)
+  const isMobile = ref(false)
+
+  const checkScreen = () => {
+    isMobile.value = window.innerWidth <= 768
+  }
+
+const changeView = () => {
+  if (isMobile.value) {
+    showSpell.value = !showSpell.value
+  }
+}
+
 
 </script>
 
 <template>
     <h2>Favorites</h2>
-
+  <button id="change_view" @click="changeView"> Spells / Monsters </button>
   <div id = page>
-  <div id = "spells">
+    
+  <div id = "spells" v-if="!isMobile || showSpell">
 
   <div class="filter-options">
     <input type="text" v-model="search_spell" placeholder="Search spell" />
@@ -174,7 +198,7 @@
   
   </div>
   <div id = "separation"></div>
-  <div id = "monsters">
+  <div id = "monsters" v-if="!isMobile || !showSpell">
 
   <div class="filter-options">
     <input type="text" v-model="search_monster" placeholder="Search monster" />
@@ -242,6 +266,12 @@
     justify-content: space-around;
   }
 
+  #change_view {
+    display : none;
+    margin : none;
+    padding : none;
+  }
+
   #spells{
     width: 49%;
   }
@@ -269,4 +299,39 @@
     gap: 10px;
     justify-content: center;
   }
+
+   /* //////////////////////////// */
+
+@media (max-width: 768px) {
+  #change_view { 
+    display : block;
+    margin : 10px auto;
+    padding : 5px 10px;
+    font-size : larger;
+    color: #4e0556;
+    background-color: #bba0c3;
+    border :0;
+    border-radius: 20px;
+  }
+
+  #change_view:hover{ 
+
+    background-color: #4e0556;
+    color: #bba0c3;
+    border :0;
+
+  }
+
+  #spells, #monsters {
+    width: 100%;
+  }
+
+  #separation {
+    display : none;
+  }
+} 
+
+
+
+
 </style>

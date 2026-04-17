@@ -209,11 +209,8 @@ const isFavorite = (selectedMonster) => {
 @media (max-width: 768px) {
   body {
     margin : 0;
-    /* overflow: hidden; */
   }
-  #page {
-    /* height: ; */
-  }
+
 
   #gallery {
     position: fixed;
