@@ -103,15 +103,13 @@ const isFavorite = (selectedSpell) => {
 </div>
 
 <div id="detail">
-    <div>
-      <button v-if="selectedSpell"
-      id="favorite"
-      :class="{ active: isFavorite(selectedSpell) }"
-      @click="toggleFavorite(selectedSpell)">
-        ★
-      </button>
-    </div>
     <div class="cards">
+      <button v-if="selectedSpell"
+        id="favorite"
+        :class="{ active: isFavorite(selectedSpell) }"
+        @click="toggleFavorite(selectedSpell)">
+          ★
+      </button>
       <SpellCard 
       v-if="selectedSpell"
       :name="selectedSpell.name"
@@ -157,12 +155,21 @@ const isFavorite = (selectedSpell) => {
     align-items : center;
   }
 
+  .cards > * {
+    position : relative;
+  }
+
   .card.selected {
     color : #830404;
     background-color : #e2bdbd;
   }
 
   #favorite {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    z-index: 10;
+
     font-size :larger;
     color: #8c8c8c;
     background-color: #d0d0d0;

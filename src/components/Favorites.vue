@@ -110,7 +110,7 @@
   <div class="filter-options">
     <input type="text" v-model="search_spell" placeholder="Search spell" />
     <label for="spell-lvl">Level  : </label>
-    <input id="spell-lvl" type="number" v-model="search_spell_lvl" placeholder="Search level" min="0" max="9"/>
+    <input id="spell-lvl" type="number" v-model="search_spell_lvl" placeholder=" " min="0" max="9"/>
     <label for="spell-sort">Sort by : </label>
     <select v-model="spellsSortBy" id="spell-sort">
       <option value="name">Name</option>

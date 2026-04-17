@@ -5,7 +5,7 @@
       <div><h4>Level :</h4> <p>{{ props.level }}</p></div>
       <div v-if="props.casting_time !== undefined"><h4>Casting Time :</h4><p>{{ props.casting_time }}</p></div>
       <div v-if="props.range !== undefined"><h4>Range/Area :</h4><p>{{ props.range }}</p></div>
-      <div v-if="props.component !== undefined"><h4>Components :</h4><p>{{ props.component }}</p></div>
+      <div v-if="props.component !== undefined"><h4>Components :</h4><p>{{ props.component[0] }}, {{ props.component[1] }}, {{ props.component[2] }}</p></div>
       <div v-if="props.duration !== undefined"><h4>Duration :</h4><p>{{ props.duration }}</p></div>
       <div v-if="props.school !== undefined"><h4>School :</h4><p>{{ props.school}}</p></div>
       <div v-if="props.attack !== undefined"><h4>Attack :</h4><p>{{ props.attack}}</p></div>

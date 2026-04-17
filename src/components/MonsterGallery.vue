@@ -156,12 +156,21 @@ const isFavorite = (selectedMonster) => {
     align-items : center;
   }
 
+  .cards > * {
+    position : relative;
+  }
+
   .card.selected {
     color : #065e13;
       background-color : #9bcea3;
   }
 
   #favorite {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    z-index: 10;
+
     font-size :larger;
     color: #8c8c8c;
     background-color: #d0d0d0;
