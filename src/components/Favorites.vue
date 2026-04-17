@@ -109,7 +109,8 @@
 
   <div class="filter-options">
     <input type="text" v-model="search_spell" placeholder="Search spell" />
-    <input type="number" v-model="search_spell_lvl" placeholder="Search level" min="0" max="9"/>
+    <label for="spell-lvl">Level  : </label>
+    <input id="spell-lvl" type="number" v-model="search_spell_lvl" placeholder="Search level" min="0" max="9"/>
     <label for="spell-sort">Sort by : </label>
     <select v-model="spellsSortBy" id="spell-sort">
       <option value="name">Name</option>
@@ -227,6 +228,7 @@
       :INT="monster.intelligence"
       :WIS="monster.wisdom"
       :CHA="monster.charisma"
+      :img="monster.image"
       :desc="monster.desc"/>
   </div>
   
@@ -250,6 +252,15 @@
   }
   #monsters{
     width: 49%;
+  }
+
+  .filter-options {
+    display : flex;
+    flex-wrap: wrap;
+    justify-content : center;
+    align-items : center;
+    gap : 10px;
+    margin: 20px 0px;
   }
 
   .cards {

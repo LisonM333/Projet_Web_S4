@@ -84,31 +84,7 @@ const isFavorite = (selectedMonster) => {
 
   <div id="gallery"><div id="gallery-options">
     <input type="text" v-model="search" placeholder="Search monster" />
-
-<!-- <label for="monster-type">Type :</label>
-    <select v-model="monsterType" id="monster-type">
-      <option value="">all</option>
-      <option value="aberration">aberration</option>
-      <option value="beast">beast</option>
-      <option value="celestial">celestial</option>
-      <option value="construct">construct</option>
-      <option value="dragon">dragon</option>
-      <option value="elemental">elemental</option>
-      <option value="fey">fey</option>
-      <option value="fiend">fiend</option>
-      <option value="giant">giant</option>
-      <option value="humanoid">humanoid</option>
-      <option value="monstrosity">monstrosity</option>
-      <option value="ooze">ooze</option>
-      <option value="plant">plant</option>
-      <option value="undead">undead</option>
-    </select>  -->
-
-    <!-- <label for="monster-sort">Sort by : </label>
-    <select v-model="monstersSortBy" id="monster-sort">
-      <option value="name">Name</option>
-    </select> -->
-    </div>
+  </div>
 
   
     <div class="cards">
@@ -116,6 +92,7 @@ const isFavorite = (selectedMonster) => {
       v-for="monster in filteredMonsterData" 
       :key="monster.index"
       :name="monster.name"
+      :class="{ selected: selectedMonster?.index === monster.index }"
       @click="selectMonster(monster)"/>
     </div>
 
@@ -177,6 +154,11 @@ const isFavorite = (selectedMonster) => {
     gap : 10px;
     justify-content : center;
     align-items : center;
+  }
+
+  .card.selected {
+    color : #065e13;
+      background-color : #9bcea3;
   }
 
   #favorite {

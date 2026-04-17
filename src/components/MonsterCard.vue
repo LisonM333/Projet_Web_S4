@@ -1,9 +1,9 @@
 <template>
   <div class="card">
     <h3>{{ props.name }}</h3>
-    <div class="img-container"><div v-if="props.img !== undefined">
+    <!-- <div class="img-container"><div v-if="props.img !== undefined">
       <img :src="`https://www.dnd5eapi.co${props.img}`" :alt="props.name" />
-    </div></div>
+    </div></div> -->
     <div class="info">
       <div>
         <div v-if="props.size !== undefined"><p>{{ props.size }}</p></div>
@@ -15,9 +15,6 @@
         <div v-if="props.AC !== undefined"><h4>Armor Class :</h4><p>{{ props.AC[0].value}} ({{ props.AC[0].type}})</p></div>
     </div>
     </div>
-
-
-
     <div class="caract">
       <div v-if="props.STR !== undefined"><h4>STR :</h4><p>{{ props.STR }}</p></div>
       <div v-if="props.DEX !== undefined"><h4>DEX :</h4><p>{{ props.DEX }}</p></div>
@@ -29,6 +26,9 @@
     <div class ="desc" v-if="props.desc !== undefined">
       <h4>Description :</h4> <p>{{ props.desc }} </p>
     </div>
+    <div class="img-container"><div v-if="props.img !== undefined">
+      <img :src="`https://www.dnd5eapi.co${props.img}`" :alt="props.name" />
+    </div></div>
   </div>
 </template>
 
@@ -59,19 +59,31 @@ const props = defineProps({
       url('/src/assets/font/Sniglet/Sniglet-Regular.ttf');
   }
 
+  h3 {
+    font-size: larger;
+  }
+
+  h4 {
+    font-size: large;
+  }
+  p{
+    font-size : medium;
+  }
+
   .card {
     font-family: Sniglet-Regular;
+
     display : colums;
-    height : 450px;
-    width : 350PX;
-    background-color : rgb(6, 94, 19);
-    color : white;
+    width : 90%;
+    height : auto;
+    color : #065e13;
+    background-color : #9bcea3;
     border-radius: 10px;
     padding : 10px;
     position: relative;
   }
 
-  .img-container {
+  /* .img-container {
     position: absolute;
     top: 0;
     right: 0;
@@ -79,20 +91,14 @@ const props = defineProps({
   }
 
   img {
-    height : 100px;
+    height : 125px;
     width : auto;
     border-radius: 10px;
-  }
-
-  .info {
-    font-size: 75%;
-  }
+  } */
 
   .info > div:first-child {
     display : flex;
     flex-flow : column wrap;
-    width : 100px;
-    font-size: 75%;
     margin : -10px, 0px, 10px, 0px;
     align-items: start;
   }
@@ -100,7 +106,6 @@ const props = defineProps({
   .info > div:last-child {
     display : flex;
     flex-wrap : wrap;
-    /* gap : 10px; */
     align-items: center;
     justify-content: space-around;
   }
@@ -112,12 +117,10 @@ const props = defineProps({
   }
 
   .info > div:last-child div *{
-    /* width: 45%; */
     margin : 10px 0px;
   }
 
   .info p {
-    text-align: center;
     margin: 0px;
   }
 
@@ -125,36 +128,49 @@ const props = defineProps({
     display : flex;
     flex-wrap : wrap;
     gap : 15px;
-    justify-content : center;
+    justify-content : space-around;
     align-items : center;
   }
 
-  .caract > * {
-    width : 100px;
-    font-size: 60%;
-    margin-bottom : -10px;
+  .caract div {
+    display : flex;
+    flex-wrap : wrap;
+    gap : 10px;
+    margin : 0px;
+    width: 30%;
   }
 
-  .caract p {
-    text-align: center;
+  .caract div > * {
+    margin : 10px 0px;
   }
 
   .desc {
     display : flex;                                                                                                                                                                                                                                                                                                                                                                               
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content : start;
+    align-items : center;
+    margin : 10px 0px;
+  }
+
+  .desc * {
+    text-align: justify;
+    margin : 0px;
+  }
+
+  .img-container {
+    display : flex;
+    flex-wrap: wrap;
     justify-content : center;
     align-items : center;
+    margin : 10px;
   }
 
-  .desc > * {
-    width : 330px;
-    font-size: 50%;
-    margin-bottom : 10px;
-  }
+  .img-container img {
+    height : auto;
+    width : 100%;
+    border-radius: 10px;
 
-  .desc p {
-    text-align: justify;
   }
-
   
 </style>
