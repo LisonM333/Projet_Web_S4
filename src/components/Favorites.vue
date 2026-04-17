@@ -70,6 +70,7 @@
   const search_monster = ref('')
   const monstersSortBy = ref('name')
   const monsterType = ref('')
+  const monsterSize = ref('')
 
 
   const filteredMonstersData = computed(() => {
@@ -80,6 +81,11 @@
   if (monsterType.value) {
     result = result.filter((monster) =>
       monster.type === monsterType.value
+    )
+  }
+  if (monsterSize.value) {
+    result = result.filter((monster) =>
+      monster.size === monsterSize.value
     )
   }
 
@@ -226,10 +232,22 @@ const changeView = () => {
       <option value="ooze">ooze</option>
       <option value="plant">plant</option>
       <option value="undead">undead</option>
+    </select>
 
-
+    <label for="monster-size">Size :</label>
+    <select v-model="monsterSize" id="monster-size">
+      <option value="">all</option>
+      <option value="tiny">Tiny</option>
+      <option value="small">Small</option>
+      <option value="medium">Medium</option>
+      <option value="large">Large</option>
+      <option value="huge">Huge</option>
+      <option value="gargantuan">Gargantuan</option>
     </select>
   </div>
+
+
+
       
 
 
